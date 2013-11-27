@@ -1466,18 +1466,29 @@ main(int argc, char *argv[])
 	size_t len = strlen(arg);
 
 	if (!strncmp("-display", arg, len)) {
-	    if (++i >= argc) usage ();
+	    if (++i >= argc) {
+		fprintf (stderr, "%s: -display requires an argument\n",
+			 ProgramName);
+		usage ();
+	    }
 	    displayname = argv[i];
 	} else if (!strncmp("-queryExtensions", arg, len)) {
 	    queryExtensions = True;
 	} else if (!strncmp("-ext", arg, len)) {
-	    if (++i >= argc) usage ();
+	    if (++i >= argc) {
+		fprintf (stderr, "%s: -ext requires an argument\n",
+			 ProgramName);
+		usage ();
+	    }
 	    mark_extension_for_printing(argv[i]);
         } else if (!strncmp("-version", arg, len)) {
             printf("%s\n", PACKAGE_STRING);
             exit (0);
-	} else
+	} else {
+	    fprintf (stderr, "%s: unrecognized argument '%s'\n",
+		     ProgramName, arg);
 	    usage ();
+	}
     }
 
     dpy = XOpenDisplay (displayname);
