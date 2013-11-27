@@ -159,7 +159,7 @@ static int print_event_mask(char *buf, int lastcol, int indent, long mask);
 
 static int StrCmp(const void *a, const  void *b)
 {
-    return strcmp(*(char **)a, *(char **)b);
+    return strcmp(*(const char * const *)a, *(const char * const *)b);
 }
 
 static void
