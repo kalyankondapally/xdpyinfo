@@ -141,9 +141,6 @@ in this Software without prior written authorization from The Open Group.
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Turn a NULL pointer string into an empty string */
-#define NULLSTR(x) (((x)!=NULL)?(x):(""))
-
 static char *ProgramName;
 static Bool queryExtensions = False;
 
