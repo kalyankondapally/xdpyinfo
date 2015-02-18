@@ -148,7 +148,7 @@ static char *ProgramName;
 static Bool queryExtensions = False;
 
 static int
-silent_errors(Display *dpy, XErrorEvent *ev)
+silent_errors(_X_UNUSED Display *dpy, _X_UNUSED XErrorEvent *ev)
 {
     return 0;
 }
