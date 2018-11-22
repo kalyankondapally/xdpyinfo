@@ -24,7 +24,7 @@ dnl Process this file with autoconf to create configure.
 # Initialize Autoconf
 AC_PREREQ([2.60])
 AC_INIT([xdpyinfo], [1.3.2],
-	[https://bugs.freedesktop.org/enter_bug.cgi?product=xorg], [xdpyinfo])
+	[https://gitlab.freedesktop.org/xorg/app/xdpyinfo/issues], [xdpyinfo])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS([config.h])
 
