@@ -239,7 +239,18 @@ print_display_info(Display *dpy)
     printf ("vendor string:    %s\n", ServerVendor (dpy));
     printf ("vendor release number:    %d\n", VendorRelease (dpy));
 
-    if (strstr(ServerVendor (dpy), "XFree86")) {
+    if (strstr(ServerVendor (dpy), "X.Org")) {
+	int vendrel = VendorRelease(dpy);
+
+	printf("X.Org version: ");
+	printf("%d.%d.%d", vendrel / 10000000,
+	       (vendrel /   100000) % 100,
+	       (vendrel /     1000) % 100);
+	if (vendrel % 1000)
+	    printf(".%d", vendrel % 1000);
+	printf("\n");
+    }
+    else if (strstr(ServerVendor (dpy), "XFree86")) {
 	int vendrel = VendorRelease(dpy);
 
 	printf("XFree86 version: ");
@@ -277,18 +288,6 @@ print_display_info(Display *dpy)
 		printf(".%d", vendrel % 1000);
 	    }
 	}
-	printf("\n");
-    }
-
-    if (strstr(ServerVendor (dpy), "X.Org")) {
-	int vendrel = VendorRelease(dpy);
-
-	printf("X.Org version: ");
-	printf("%d.%d.%d", vendrel / 10000000,
-	       (vendrel /   100000) % 100,
-	       (vendrel /     1000) % 100);
-	if (vendrel % 1000)
-	    printf(".%d", vendrel % 1000);
 	printf("\n");
     }
 
