@@ -170,7 +170,7 @@ print_extension_info(Display *dpy)
     if (extlist) {
 	int i;
 
-	qsort(extlist, n, sizeof(char *), StrCmp);
+	qsort(extlist, (size_t)n, sizeof(char *), StrCmp);
 
 	if (!queryExtensions) {
 	    for (i = 0; i < n; i++) {
@@ -180,7 +180,7 @@ print_extension_info(Display *dpy)
 	    xcb_connection_t *xcb_conn = XGetXCBConnection (dpy);
 	    xcb_query_extension_cookie_t *qe_cookies;
 
-	    qe_cookies = calloc(n, sizeof(xcb_query_extension_cookie_t));
+	    qe_cookies = calloc((size_t)n, sizeof(xcb_query_extension_cookie_t));
 	    if (!qe_cookies) {
 		perror ("calloc failed to allocate memory for extensions");
 		return;
@@ -192,7 +192,7 @@ print_extension_info(Display *dpy)
 	     */
 	    for (i = 0; i < n; i++) {
 		qe_cookies[i] = xcb_query_extension (xcb_conn,
-						     strlen(extlist[i]),
+						     (uint16_t)strlen(extlist[i]),
 						     extlist[i]);
 	    }
 
@@ -1379,7 +1379,7 @@ print_known_extensions(FILE *f)
     int i, col;
     for (i = 0, col = 6; i < num_known_extensions; i++)
     {
-	int extlen = strlen(known_extensions[i].extname) + 1;
+	int extlen = (int) strlen(known_extensions[i].extname) + 1;
 
 	if ((col + extlen) > 79)
 	{
